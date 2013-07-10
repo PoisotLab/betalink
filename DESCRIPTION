@@ -7,5 +7,5 @@ Maintainer: Timothee Poisot <timothee.poisot@uqar.ca>
 Depends: R (>= 2.12.0)
 Suggests: vegan
 Description: The betalink package allows to reproduce measures of beta-diversity in networks, and easily visualize why two networks are different.
-License: GPL (>= 3) 
+License: BSD_2_clause + file LICENSE
 URL: http://www.timotheepoisot.fr/
