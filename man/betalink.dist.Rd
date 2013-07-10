@@ -22,4 +22,4 @@ betalink.dist = function(W,...)
 
 \examples{W <- generate.metaweb(10,10,60)
 	real <- extract.localwebs(W,4,4,0.9)
-	betalink.plot(real$m1,real$m2)}
+	betalink.dist(real)}

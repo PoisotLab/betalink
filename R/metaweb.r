@@ -1,4 +1,4 @@
-aggregate.metaweb = function(W){
+metaweb = function(W){
 	Lo = unique(unlist(lapply(W,colnames)))
 	Up = unique(unlist(lapply(W,rownames)))
 	meta = matrix(0,ncol=length(Lo),nrow=length(Up))

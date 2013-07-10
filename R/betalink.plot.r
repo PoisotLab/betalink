@@ -9,7 +9,7 @@ betalink.plot = function(m1,m2,by.unique=TRUE){
 	up.un.2 = up.2[!(up.2%in%up.shared)]
 	lo.un.1 = lo.1[!(lo.1%in%lo.shared)]
 	lo.un.2 = lo.2[!(lo.2%in%lo.shared)]
-	m = aggregate.metaweb(list(m1,m2))$web
+	m = metaweb(list(m1,m2))$web
 	if(by.unique){
 		oCol = rep(0,ncol(m))
 		oCol[colnames(m)%in%lo.un.1] = c(1:length(lo.un.1))
