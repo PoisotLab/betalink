@@ -24,7 +24,7 @@ betalink.plot = function(m1,m2,by.unique=TRUE){
 		oRow = nrow(m)-rank(rowSums(m),ties.method='r')+1
 	}
 	plot(0, pch=NA, xlim=c(-3,nrow(m)), ylim=c(-3,ncol(m)), asp=1, ylab='',xlab='', yaxt='n', xaxt='n', bty='n')
-	text(y=-0.4,x=oRow+0.5,rownames(m),pos=2,srt=90,cex=0.75)
+	text(y = -0.4, x = oRow - 0.25, rownames(m), pos = 2, srt = 90, cex = 0.75)
 	text(x=-0.4,y=oCol-0.5,colnames(m),pos=2,cex=0.75)
 	for(ro in 1:nrow(m)){
 		current.up = rownames(m)[ro]
