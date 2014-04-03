@@ -1,26 +1,14 @@
-\name{metaweb} 
-\Rdversion{1.1} 
-\alias{metaweb} 
-\title{Aggregate different networks into a single metaweb}
-\description{Take a list of networks, ad returns the adjacency matrix of the metaweb, and the probability to observe each link based on the number of times it occured when the two species were present.}
-\usage{ 
+\name{metaweb}
+\alias{metaweb}
+\title{Returns a metaweb given a list of networks}
+\usage{
 metaweb(W)
 }
-
-\arguments{ 
-\item{W}{A list of matrices}
+\arguments{
+  \item{W}{a \code{list} of matrices}
+}
+\description{
+Given a list of networks, this function returns the
+metaweb, and informations related to co-occurrence
 }
 
-\value{
-	\item{web}{The adjacency matrix of the metaweb}
-	\item{template}{The link occurence probability matrix, needed by the \kbd{null.metaweb} function}
-}
-
-\details{Both matrices are named suing the rows and columns names of the matrices in the \kbd{W} list}
-
-\references{---}
-
-\examples{W <- generate.metaweb(10,10,60)
-	real <- extract.localwebs(W,4,4,0.9)
-	Meta <- metaweb(real) 
-	image(Meta$template)}

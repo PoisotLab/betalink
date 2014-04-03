@@ -1,3 +1,1 @@
- export(null.connectance, null.degrees, null.metaweb, null.from_template, generate.metaweb, extract.localwebs, betalink, betalink.dist, beta.os_prime, metaweb, betalink.plot)
-
-exportPattern("^B")
+export(metaweb)
