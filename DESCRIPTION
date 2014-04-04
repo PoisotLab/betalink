@@ -5,7 +5,8 @@ Title: Beta-diversity within a metaweb of species interactions
 Author: Timothee Poisot <timothee.poisot@uqar.ca>
 Maintainer: Timothee Poisot <timothee.poisot@uqar.ca>
 Depends:
-    R (>= 2.12.0)
+    R (>= 2.12.0),
+    plyr
 Suggests:
     vegan
 Description: The betalink package allows to reproduce measures of
