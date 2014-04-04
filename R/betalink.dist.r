@@ -1,6 +1,16 @@
 #' @title Components of beta-diversity for a list of networks
 #' @description
 #' Given a list of networks, returns the pairwise beta-diversity components
+#'
+#' @param W a list of networks
+#' @param ... additional arguments to be passed to \link{betalink}
+#'
+#' @return WN The whole network beta-diversity
+#' @return OS The overlapping species beta-diversity
+#' @return S The species beta-diversity
+#' @return ST The difference between WN and OS
+#' @return contrib ST expressed as a proportion of WN
+#'
 #' @export
 network_betadiversity <- function(W, ...){
 	dWN <- matrix(NA,ncol=length(W),nrow=length(W))
