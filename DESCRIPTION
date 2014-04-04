@@ -6,7 +6,8 @@ Author: Timothee Poisot <timothee.poisot@uqar.ca>
 Maintainer: Timothee Poisot <timothee.poisot@uqar.ca>
 Depends:
     R (>= 2.12.0),
-    plyr
+    plyr,
+    igraph
 Suggests:
     vegan
 Description: The betalink package allows to reproduce measures of
