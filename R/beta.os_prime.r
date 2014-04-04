@@ -8,7 +8,7 @@
 #' @return An array of the values of Beta OS'
 #'
 #' @export
-beta.os_prime <- function(W, ...){
+beta_os_prime <- function(W, ...){
 	metaweb <- metaweb(W)$web
 	os_prime <- NULL
 	for(w in W){
