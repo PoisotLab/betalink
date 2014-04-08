@@ -1,3 +1,4 @@
 export(beta_os_prime)
+export(betalink)
 export(metaweb)
 export(network_betadiversity)
