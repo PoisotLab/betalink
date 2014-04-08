@@ -2,13 +2,12 @@
 \alias{prepare_networks}
 \title{Prepare networks}
 \usage{
-prepare_networks(w, mode = "directed")
+prepare_networks(w, directed = TRUE)
 }
 \arguments{
   \item{w}{A list of network matrices}
 
-  \item{mode}{the mode of interaction (see
-  \code{?graph.adjacency})}
+  \item{directed}{whether the edges are directed or not}
 }
 \description{
 Taking a list of networks as matrices, returns a list of
