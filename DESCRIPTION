@@ -9,7 +9,8 @@ Depends:
     plyr,
     igraph
 Suggests:
-    vegan
+    vegan,
+    rmangal
 Description: The betalink package allows to reproduce measures of
     beta-diversity in networks, and easily visualize why two networks are
     different.
