@@ -2,33 +2,28 @@
 #' @description
 #' Given a list of networks, returns the pairwise beta-diversity components
 #'
-#' @param W a list of networks
+#' @param N a list of networks
 #' @param ... additional arguments to be passed to \link{betalink}
 #'
-#' @return WN The whole network beta-diversity
-#' @return OS The overlapping species beta-diversity
-#' @return S The species beta-diversity
-#' @return ST The difference between WN and OS
-#' @return contrib ST expressed as a proportion of WN
+#' @return A dataframe with the pairwise distances
 #'
 #' @export
-network_betadiversity <- function(W, ...){
-	dWN <- matrix(NA,ncol=length(W),nrow=length(W))
-	colnames(dWN) <- names(W)
-	rownames(dWN) <- names(W)
-	dOS <- dWN
-	dS <- dWN
-	dST <- dWN
-	dContrib <- dWN
-	for(i in c(1:(length(W)-1))){
-		for(j in c((i+1):(length(W)))){
-			partition <- betalink(W[[i]], W[[j]], ...)
-			dWN[j,i] <- partition$WN
-			dOS[j,i] <- partition$OS
-			dS[j,i] <- partition$S
-			dST[j,i] <- partition$ST
-			dContrib[j,i] <- partition$contrib
-		}
-	}
-	return(llply(list(WN=dWN, OS=dOS, S=dS, ST=dST, contrib=dContrib), as.dist))
+network_betadiversity <- function(N, ...){
+   beta <- NULL
+   for(i in c(1:(length(N)-1)))
+   {
+      for(j in c((i+1):length(N)))
+      {
+         b <- betalink(N[[i]], N[[j]], ...)
+         b$i <- names(N)[i]
+         b$j <- names(N)[j]
+         beta <- rbind(beta, unlist(b))
+      }
+   }
+   beta <- data.frame(beta[,c('i', 'j', 'S', 'OS', 'WN', 'ST')])
+   beta$OS <- as.numeric(as.vector(beta$OS))
+   beta$S <- as.numeric(as.vector(beta$S))
+   beta$WN <- as.numeric(as.vector(beta$WN))
+   beta$ST <- as.numeric(as.vector(beta$ST))
+   return(beta)
 }
