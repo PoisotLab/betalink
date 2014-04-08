@@ -42,3 +42,11 @@ betalink <- function(w1,w2,bf=B01){
 	
 	return(list(S = beta_S, OS = beta_OS, WN = beta_WN, ST = beta_ST, contrib = b_contrib))
 }
+
+
+#' @title Anemone/fish interaction data
+#' @docType data
+#' @keywords dataset
+#' @name clownfishes
+#' @format 16 adjancency matrices with species names
+NULL
