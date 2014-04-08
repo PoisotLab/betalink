@@ -16,6 +16,6 @@ igraph objects
 \examples{
 data(clownfishes)
 networks <- prepare_networks(clownfishes, TRUE)
-networks$Timur
+print(V(networks$Timur))
 }
 
