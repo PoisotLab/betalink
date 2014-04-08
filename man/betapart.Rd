@@ -1,0 +1,22 @@
+\name{betapart}
+\alias{betapart}
+\title{Partition sets A and B}
+\usage{
+betapart(A, B)
+}
+\arguments{
+  \item{A}{any array}
+
+  \item{B}{any array}
+}
+\description{
+given any two sets (arrays) A and B, return the size of
+components a, b, and c, used in functions to measure
+beta-diversity
+}
+\examples{
+A = c(1,2,3)
+B = c(2,3,4)
+betapart(A, B)
+}
+

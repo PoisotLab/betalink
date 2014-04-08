@@ -1,5 +1,6 @@
 export(beta_os_prime)
 export(betalink)
+export(betapart)
 export(metaweb)
 export(network_betadiversity)
 export(prepare_networks)

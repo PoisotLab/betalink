@@ -2,13 +2,12 @@
 \alias{metaweb}
 \title{Returns a metaweb given a list of networks}
 \usage{
-metaweb(W)
+metaweb(n)
 }
 \arguments{
-  \item{W}{a \code{list} of matrices}
+  \item{n}{a \code{list} of graphs}
 }
 \description{
-Given a list of networks, this function returns the
-metaweb, and informations related to co-occurrence
+Given a list of networks, this function returns the metaweb
 }
 

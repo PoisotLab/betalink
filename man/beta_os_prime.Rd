@@ -2,10 +2,10 @@
 \alias{beta_os_prime}
 \title{Measure the distance between a network and its metaweb}
 \usage{
-beta_os_prime(W, ...)
+beta_os_prime(N, ...)
 }
 \arguments{
-  \item{W}{a list of networks}
+  \item{N}{a list of networks}
 
   \item{...}{additional arguments to be passed to
   \link{betalink}}

@@ -15,7 +15,7 @@ igraph objects
 }
 \examples{
 data(clownfishes)
-networks <- prepare_networks(clownfishes, "undirected")
-networks[[1]]
+networks <- prepare_networks(clownfishes, TRUE)
+networks$Timur
 }
 

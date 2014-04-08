@@ -2,12 +2,12 @@
 \alias{betalink}
 \title{beta-diversity of two networks}
 \usage{
-betalink(w1, w2, bf = B01)
+betalink(n1, n2, bf = B01)
 }
 \arguments{
-  \item{w1}{network 1 (as a matrix)}
+  \item{n1}{network 1 (as an igraph object)}
 
-  \item{w2}{network 2 (as a matrix)}
+  \item{n2}{network 2 (as an igraph object)}
 
   \item{bf}{any function to measure beta-diversity between
   two sets}
