@@ -5,6 +5,11 @@
 #' @param n a \code{list} of graphs
 #' @export
 metaweb <- function(n){
+   if(length(n)==1)
+   {
+      warning("There is a single network in the data you passed")
+      return(n)
+   }
    M <- n[[1]]
    for(i in c(2:length(n))) M <- M + n[[i]]
    return(M)

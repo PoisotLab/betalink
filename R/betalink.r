@@ -11,44 +11,33 @@ betalink <- function(n1,n2,bf=B01){
    # Vertices in the two networks
    v1 <- V(n1)$name
    v2 <- V(n2)$name
-	sp1 = list(top=rownames(w1),bottom=colnames(w1),all=unique(c(colnames(w1),rownames(w1))))
-	sp2 = list(top=rownames(w2),bottom=colnames(w2),all=unique(c(colnames(w2),rownames(w2))))
-	beta_S = bf(pmb(sp1$all,sp2$all))
-	# Common species
-	Csp = sp1$all[sp1$all %in% sp2$all]
-	CUsp = sp1$top[sp1$top %in% sp2$top]
-	CLsp = sp1$bottom[sp1$bottom %in% sp2$bottom]
-	if((length(CUsp)>0) & (length(CLsp)>0))
-	{
-		w1Con = w1[CUsp,CLsp]
-		w2Con = w2[CUsp,CLsp]
-		nCon = sum((w1Con == w2Con) & (w1Con == 1))
-		pmBos = list(b=sum(w1Con)-nCon,c=sum(w2Con)-nCon,a=nCon)
-		pmBwn = list(b=sum(w1)-nCon,c=sum(w2)-nCon,a=nCon)
-		beta_OS = bf(pmBos)
-		beta_WN = bf(pmBwn)
-		if(is.na(beta_OS)) beta_OS = 0
-		if(is.na(beta_WN)) beta_WN = 0
-		beta_ST = beta_WN - beta_OS
-		if(beta_WN > 0){
-			b_contrib = beta_ST / beta_WN
-		} else {
-			b_contrib = 0
-		}
-	} else {
-		beta_WN = 0
-		beta_OS = 0
-		beta_ST = 0
-		b_contrib = 0
-	}
-	
-	return(list(S = beta_S, OS = beta_OS, WN = beta_WN, ST = beta_ST, contrib = b_contrib))
+   vs <- v1[v1 %in% v2] # Shared vertices
+   beta_S <- bf(betapart(v1, v2))
+   # Why can't igraph just expose the name of edges? WHY?
+   # This is fugly
+   # I hate this bullshit
+   e1 <- aaply(get.edgelist(n1), 1, function(x) str_c(x[order(x)], collapse='--', paste='_'))
+   e2 <- aaply(get.edgelist(n2), 1, function(x) str_c(x[order(x)], collapse='--', paste='_'))
+   beta_WN <- bf(betapart(e1, e2))
+   if(length(vs)>0)
+   {
+      sn1 <- induced.subgraph(n1, V(n1)[name %in% vs])
+      sn2 <- induced.subgraph(n2, V(n2)[name %in% vs])
+      se1 <- aaply(get.edgelist(sn1), 1, function(x) str_c(x[order(x)], collapse='--', paste='_'))
+      se2 <- aaply(get.edgelist(sn2), 1, function(x) str_c(x[order(x)], collapse='--', paste='_'))
+      beta_OS <- bf(betapart(se1, se2))
+   } else {
+      beta_OS <- NA
+   }
+	return(list(S = beta_S, OS = beta_OS, WN = beta_WN, ST = beta_WN - beta_OS))
 }
 
 #' @title Partition sets A and B
 #' @description
 #' given any two sets (arrays) A and B, return the size of components
 #' a, b, and c, used in functions to measure beta-diversity
+#' @param A any array
+#' @param B any array
 #' @export
 #' @examples
 #' A = c(1,2,3)
