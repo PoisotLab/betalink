@@ -1,9 +1,16 @@
-betalink = function(w1,w2,bf=B01){
+#' @title beta-diversity of two networks
+#' @description
+#' measures the beta-diversity between two networks
+#' @param w1 network 1 (as a matrix)
+#' @param w2 network 2 (as a matrix)
+#' @param bf any function to measure beta-diversity between two sets
+#'
+#' @return a list with components S, OS, WN, ST, and contrib
+#' @export
+betalink <- function(w1,w2,bf=B01){
 	pmb = function(A,B) list(b=sum(!(A %in% B)),c=sum(!(B %in% A)),a=sum(B %in% A))
 	sp1 = list(top=rownames(w1),bottom=colnames(w1),all=unique(c(colnames(w1),rownames(w1))))
 	sp2 = list(top=rownames(w2),bottom=colnames(w2),all=unique(c(colnames(w2),rownames(w2))))
-	beta_U = bf(pmb(sp1$top,sp2$top))
-	beta_L = bf(pmb(sp1$bottom,sp2$bottom))
 	beta_S = bf(pmb(sp1$all,sp2$all))
 	# Common species
 	Csp = sp1$all[sp1$all %in% sp2$all]
@@ -33,5 +40,5 @@ betalink = function(w1,w2,bf=B01){
 		b_contrib = 0
 	}
 	
-	return(list(U = beta_U, L = beta_L, S = beta_S, OS = beta_OS, WN = beta_WN, ST = beta_ST, contrib = b_contrib))
+	return(list(S = beta_S, OS = beta_OS, WN = beta_WN, ST = beta_ST, contrib = b_contrib))
 }
