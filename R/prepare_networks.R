@@ -3,21 +3,24 @@
 #' Taking a list of networks as matrices, returns a list of igraph objects
 #' 
 #' @param w A list of network matrices
-#' @param mode the mode of interaction (see \code{?graph.adjacency})
+#' @param directed whether the edges are directed or not
 #' 
 #' @export
 #' @examples
 #' data(clownfishes)
-#' networks <- prepare_networks(clownfishes, "undirected")
-#' networks[[1]]
-prepare_networks <- function(w, mode = "directed")
+#' networks <- prepare_networks(clownfishes, TRUE)
+#' networks$Timur
+prepare_networks <- function(w, directed = TRUE)
 {
    if(is.null(names(w))) warning("It is recommended to give names to your networks")
    interactions_df <- llply(w, df_from_A)
-   return(llply(interactions_df, function(x) graph.adjacency(x, mode = mode)))
+   networks <- llply(interactions_df, function(x) graph.data.frame(x, directed = directed))
+   class(networks) <- "econetwork"
+   return(networks)
 }
 
 #' @title data.frame from adjancency matrix
+#' @param A an adjacency matrix
 df_from_A <- function(A)
 {
    A[A>0] <- 1
