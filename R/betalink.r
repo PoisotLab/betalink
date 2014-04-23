@@ -7,7 +7,7 @@
 #'
 #' @return a list with components S, OS, WN, ST, and contrib
 #' @export
-betalink <- function(n1,n2,bf=B01){
+betalink <- function(n1,n2,bf=B22){
    # Vertices in the two networks
    v1 <- V(n1)$name
    v2 <- V(n2)$name
