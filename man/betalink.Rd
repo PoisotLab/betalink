@@ -2,7 +2,7 @@
 \alias{betalink}
 \title{beta-diversity of two networks}
 \usage{
-betalink(n1, n2, bf = B01)
+betalink(n1, n2, bf = B22)
 }
 \arguments{
   \item{n1}{network 1 (as an igraph object)}
