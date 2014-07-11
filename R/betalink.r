@@ -5,7 +5,15 @@
 #' @param n2 network 2 (as an igraph object)
 #' @param bf any function to measure beta-diversity between two sets
 #'
-#' @return a list with components S, OS, WN, ST, and contrib
+#' @return a list with components S, OS, WN, and ST. While interpreting
+#' the output, it is important to consider that ST is strongly constrained by
+#' the values of S (the species composition dissimilarity). ST is only really
+#' meaningful when the values of S are "intermediate"; a good example is when
+#' the networks have been sampled along a gradient, and a more or less equal
+#' proportion of the species show turnover from one step to the next. In the
+#' situations where S is either really high or really low, the values of ST
+#' are constrained and should no be given importance. The values of OS and WN,
+#' and how they relate to S, have more informative value.
 #' @export
 betalink <- function(n1,n2,bf=B22){
    # Vertices in the two networks
