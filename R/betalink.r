@@ -15,7 +15,7 @@
 #' are constrained and should no be given importance. The values of OS and WN,
 #' and how they relate to S, have more informative value.
 #' @export
-betalink <- function(n1,n2,bf=B22){
+betalink <- function(n1,n2,bf=B01){
    # Vertices in the two networks
    v1 <- V(n1)$name
    v2 <- V(n2)$name
