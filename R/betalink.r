@@ -1,37 +1,63 @@
-betalink = function(w1,w2,bf=B01){
-	pmb = function(A,B) list(b=sum(!(A %in% B)),c=sum(!(B %in% A)),a=sum(B %in% A))
-	sp1 = list(top=rownames(w1),bottom=colnames(w1),all=unique(c(colnames(w1),rownames(w1))))
-	sp2 = list(top=rownames(w2),bottom=colnames(w2),all=unique(c(colnames(w2),rownames(w2))))
-	beta_U = bf(pmb(sp1$top,sp2$top))
-	beta_L = bf(pmb(sp1$bottom,sp2$bottom))
-	beta_S = bf(pmb(sp1$all,sp2$all))
-	# Common species
-	Csp = sp1$all[sp1$all %in% sp2$all]
-	CUsp = sp1$top[sp1$top %in% sp2$top]
-	CLsp = sp1$bottom[sp1$bottom %in% sp2$bottom]
-	if((length(CUsp)>0) & (length(CLsp)>0))
-	{
-		w1Con = w1[CUsp,CLsp]
-		w2Con = w2[CUsp,CLsp]
-		nCon = sum((w1Con == w2Con) & (w1Con == 1))
-		pmBos = list(b=sum(w1Con)-nCon,c=sum(w2Con)-nCon,a=nCon)
-		pmBwn = list(b=sum(w1)-nCon,c=sum(w2)-nCon,a=nCon)
-		beta_OS = bf(pmBos)
-		beta_WN = bf(pmBwn)
-		if(is.na(beta_OS)) beta_OS = 0
-		if(is.na(beta_WN)) beta_WN = 0
-		beta_ST = beta_WN - beta_OS
-		if(beta_WN > 0){
-			b_contrib = beta_ST / beta_WN
-		} else {
-			b_contrib = 0
-		}
-	} else {
-		beta_WN = 0
-		beta_OS = 0
-		beta_ST = 0
-		b_contrib = 0
-	}
-	
-	return(list(U = beta_U, L = beta_L, S = beta_S, OS = beta_OS, WN = beta_WN, ST = beta_ST, contrib = b_contrib))
+#' @title beta-diversity of two networks
+#' @description
+#' measures the beta-diversity between two networks
+#' @param n1 network 1 (as an igraph object)
+#' @param n2 network 2 (as an igraph object)
+#' @param bf any function to measure beta-diversity between two sets
+#'
+#' @return a list with components S, OS, WN, and ST. While interpreting
+#' the output, it is important to consider that ST is strongly constrained by
+#' the values of S (the species composition dissimilarity). ST is only really
+#' meaningful when the values of S are "intermediate"; a good example is when
+#' the networks have been sampled along a gradient, and a more or less equal
+#' proportion of the species show turnover from one step to the next. In the
+#' situations where S is either really high or really low, the values of ST
+#' are constrained and should no be given importance. The values of OS and WN,
+#' and how they relate to S, have more informative value.
+#' @export
+betalink <- function(n1,n2,bf=B01){
+   # Vertices in the two networks
+   v1 <- V(n1)$name
+   v2 <- V(n2)$name
+   vs <- v1[v1 %in% v2] # Shared vertices
+   beta_S <- bf(betapart(v1, v2))
+   # Why can't igraph just expose the name of edges? WHY?
+   # This is fugly
+   # I hate this bullshit
+   e1 <- aaply(get.edgelist(n1), 1, function(x) str_c(x[order(x)], collapse='--', paste='_'))
+   e2 <- aaply(get.edgelist(n2), 1, function(x) str_c(x[order(x)], collapse='--', paste='_'))
+   beta_WN <- bf(betapart(e1, e2))
+   if(length(vs)>=2)
+   {
+      sn1 <- induced.subgraph(n1, V(n1)[name %in% vs])
+      sn2 <- induced.subgraph(n2, V(n2)[name %in% vs])
+      se1 <- aaply(get.edgelist(sn1), 1, function(x) str_c(x[order(x)], collapse='--', paste='_'))
+      se2 <- aaply(get.edgelist(sn2), 1, function(x) str_c(x[order(x)], collapse='--', paste='_'))
+      beta_OS <- bf(betapart(se1, se2))
+      beta_ST <- beta_WN - beta_OS
+   } else {
+      beta_OS <- NaN
+      beta_ST <- NaN
+   }
+	return(list(S = beta_S, OS = beta_OS, WN = beta_WN, ST = beta_ST))
 }
+
+#' @title Partition sets A and B
+#' @description
+#' given any two sets (arrays) A and B, return the size of components
+#' a, b, and c, used in functions to measure beta-diversity
+#' @param A any array
+#' @param B any array
+#' @export
+#' @examples
+#' A = c(1,2,3)
+#' B = c(2,3,4)
+#' betapart(A, B)
+betapart <- function(A,B) list(b=sum(!(A %in% B)), c=sum(!(B %in% A)), a=sum(B %in% A))
+
+#' @title Anemone/fish interaction data
+#' @docType data
+#' @keywords dataset
+#' @name clownfishes
+#' @format 16 adjancency matrices with species names
+NULL
