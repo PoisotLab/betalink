@@ -1,16 +1,40 @@
-#' @title Plot a pair of network to highlight their differences
-network_betaplot <- function(n1, n2, na='skyblue', nb='palegreen', ns='lightgrey', ...){
+#' @title Plot a network with species and interactions highlighted
+#' @description
+#' Plot differences between two networks
+#'
+#' @param n1 a network
+#' @param n2 a second network
+#' @param ... additional arguments to be passed to plot
+#'
+#' @return Nothing
+#'
+#' @export
+network_betaplot <- function(n1, n2, na='#2ca02c', nb='#1f77b4', ns='grey', ...){
    M <- metaweb(list(n1,n2))
-   s_a <- unique(c(colnames(A),rownames(A)))
-   s_b <- unique(c(colnames(B),rownames(B)))
-   ## VERTICES
+   s1 <- V(n1)$name
+   s2 <- V(n2)$name
+   # VERTICES
    vert_color <- rep(ns, length(V(M)))
    names(vert_color) <- V(M)$name
-   for(v in V(G)$name)
+   for(v in V(M)$name)
    {
-      if ((v %in% s_a) && !(v %in% s_b)) vert_color[v] = na
-      if (!(v %in% s_a) && (v %in% s_b)) vert_color[v] = nb
+      if ((v %in% s1) && !(v %in% s2)) vert_color[v] = na
+      if (!(v %in% s1) && (v %in% s2)) vert_color[v] = nb
    }
-   ##
-   plot(G, vertex.color = vert_color, ...)
+   # EDGES
+   make_readable_edgelist = function(x) {
+     X = get.edgelist(x)
+     return(paste(X[,1], X[,2]))
+   }
+   edge_color <- rep(ns, length(E(M)))
+   em = make_readable_edgelist(M)
+   names(edge_color) <- em
+   e1 = make_readable_edgelist(n1)
+   e2 = make_readable_edgelist(n2)
+   for(ee in em)
+   {
+      if ((ee %in% e1) && !(ee %in% e2)) edge_color[ee] = na
+      if (!(ee %in% e1) && (ee %in% e2)) edge_color[ee] = nb
+   }
+   plot(M, vertex.color = vert_color, edge.color = edge_color, ...)
 }
