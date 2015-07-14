@@ -9,7 +9,8 @@ test: cran/betalink doc
 	cp -r * cran/betalink 2>/dev/null; true
 	rm -r cran/betalink/{cran,inst,tests}
 	rm cran/betalink/Makefile
-	cd cran; R CMD check betalink
+	rm cran/betalink/*.gz
+	cd cran; R CMD check --as-cran betalink
 
 betalink.tar.gz:
 	cd cran; tar -zcvf $@ betalink
