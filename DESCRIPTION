@@ -1,7 +1,7 @@
 Package: betalink
-Version: 2.0.1
-Date: 2015-02-25
-Title: Beta-diversity within a metaweb of species interactions
+Version: 2.0.2
+Date: 2015-07-13
+Title: Beta-Diversity Within a Metaweb of Species Interactions
 Author: Timothee Poisot <timothee.poisot@uqar.ca>
 Maintainer: Timothee Poisot <timothee.poisot@uqar.ca>
 Depends:
@@ -9,11 +9,8 @@ Depends:
     plyr,
     stringr,
     igraph
-Suggests:
-    vegan,
-    rmangal
 Description: The betalink package allows to reproduce measures of
     beta-diversity in networks, and easily visualize why two networks are
     different.
 License: BSD_2_clause + file LICENSE
-URL: http://www.timotheepoisot.fr/
+URL: http://www.poisotlab.io/software
