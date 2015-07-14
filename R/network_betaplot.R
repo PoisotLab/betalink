@@ -39,5 +39,5 @@ network_betaplot <- function(n1, n2, na='#2ca02c', nb='#1f77b4', ns='grey', ...)
       if ((ee %in% e1) && !(ee %in% e2)) edge_color[ee] = na
       if (!(ee %in% e1) && (ee %in% e2)) edge_color[ee] = nb
    }
-   plot(M, vertex.color = vert_color, edge.color = edge_color, ...)
+   igraph::plot.igraph(M, vertex.color = vert_color, edge.color = edge_color, ...)
 }
