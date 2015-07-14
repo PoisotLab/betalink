@@ -29,8 +29,8 @@ betalink <- function(n1,n2,bf=B01){
    beta_WN <- bf(betapart(e1, e2))
    if(length(vs)>=2)
    {
-      sn1 <- igraph::induced.subgraph(n1, igraph::V(n1)[name %in% vs])
-      sn2 <- igraph::induced.subgraph(n2, igraph::V(n2)[name %in% vs])
+      sn1 <- igraph::induced.subgraph(n1, which(igraph::V(n1)$name %in% vs))
+      sn2 <- igraph::induced.subgraph(n2, which(igraph::V(n2)$name %in% vs))
       se1 <- plyr::aaply(igraph::get.edgelist(sn1), 1, function(x) stringr::str_c(x[order(x)], collapse='--', paste='_'))
       se2 <- plyr::aaply(igraph::get.edgelist(sn2), 1, function(x) stringr::str_c(x[order(x)], collapse='--', paste='_'))
       beta_OS <- bf(betapart(se1, se2))
