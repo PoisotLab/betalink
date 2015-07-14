@@ -4,6 +4,9 @@
 #'
 #' @param n1 a network
 #' @param n2 a second network
+#' @param na color of items unique to network 1
+#' @param nb color of items unique to network 2
+#' @param ns color of shared items
 #' @param ... additional arguments to be passed to plot
 #'
 #' @return Nothing
@@ -11,12 +14,12 @@
 #' @export
 network_betaplot <- function(n1, n2, na='#2ca02c', nb='#1f77b4', ns='grey', ...){
    M <- metaweb(list(n1,n2))
-   s1 <- V(n1)$name
-   s2 <- V(n2)$name
+   s1 <- igraph::V(n1)$name
+   s2 <- igraph::V(n2)$name
    # VERTICES
-   vert_color <- rep(ns, length(V(M)))
-   names(vert_color) <- V(M)$name
-   for(v in V(M)$name)
+   vert_color <- rep(ns, length(igraph::V(M)))
+   names(vert_color) <- igraph::V(M)$name
+   for(v in igraph::V(M)$name)
    {
       if ((v %in% s1) && !(v %in% s2)) vert_color[v] = na
       if (!(v %in% s1) && (v %in% s2)) vert_color[v] = nb
@@ -26,7 +29,7 @@ network_betaplot <- function(n1, n2, na='#2ca02c', nb='#1f77b4', ns='grey', ...)
      X = igraph::get.edgelist(x)
      return(paste(X[,1], X[,2]))
    }
-   edge_color <- rep(ns, length(E(M)))
+   edge_color <- rep(ns, length(igraph::E(M)))
    em = make_readable_edgelist(M)
    names(edge_color) <- em
    e1 = make_readable_edgelist(n1)

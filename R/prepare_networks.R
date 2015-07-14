@@ -7,9 +7,9 @@
 #'
 #' @export
 #' @examples
-#' data(clownfishes)
-#' networks <- prepare_networks(clownfishes, TRUE)
-#' print(V(networks$Timur))
+#' data(anemonefish)
+#' networks <- prepare_networks(anemonefish, TRUE)
+#' print(networks$Timur)
 prepare_networks <- function(w, directed = TRUE)
 {
    if(is.null(names(w))) warning("It is recommended to give names to your networks")

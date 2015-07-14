@@ -1,11 +1,11 @@
-citHeader("To cite package 'cheddar' in publications use:")
+citHeader("To cite package 'betalink' in publications use:")
 
 citEntry(entry="Article",
   title = "The dissimilarity of ecological networks",
-  author = personList(as.person("Timothee Poisot"), 
-                      as.person("Elsa Canard"), 
-                      as.person("David Mouillot"), 
-                      as.person("Nicolas Mouquet"), 
+  author = personList(as.person("Timothee Poisot"),
+                      as.person("Elsa Canard"),
+                      as.person("David Mouillot"),
+                      as.person("Nicolas Mouquet"),
                       as.person("Dominique Gravel")),
   journal = "Ecology Letters",
   year =    "2012",
