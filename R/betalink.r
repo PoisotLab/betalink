@@ -24,15 +24,15 @@ betalink <- function(n1,n2,bf=B01){
    # Why can't igraph just expose the name of edges? WHY?
    # This is fugly
    # I hate this bullshit
-   e1 <- aaply(get.edgelist(n1), 1, function(x) str_c(x[order(x)], collapse='--', paste='_'))
-   e2 <- aaply(get.edgelist(n2), 1, function(x) str_c(x[order(x)], collapse='--', paste='_'))
+   e1 <- plyr::aaply(get.edgelist(n1), 1, function(x) str_c(x[order(x)], collapse='--', paste='_'))
+   e2 <- plyr::aaply(get.edgelist(n2), 1, function(x) str_c(x[order(x)], collapse='--', paste='_'))
    beta_WN <- bf(betapart(e1, e2))
    if(length(vs)>=2)
    {
-      sn1 <- induced.subgraph(n1, V(n1)[name %in% vs])
-      sn2 <- induced.subgraph(n2, V(n2)[name %in% vs])
-      se1 <- aaply(get.edgelist(sn1), 1, function(x) str_c(x[order(x)], collapse='--', paste='_'))
-      se2 <- aaply(get.edgelist(sn2), 1, function(x) str_c(x[order(x)], collapse='--', paste='_'))
+      sn1 <- igraph::induced.subgraph(n1, V(n1)[name %in% vs])
+      sn2 <- igraph::induced.subgraph(n2, V(n2)[name %in% vs])
+      se1 <- plyr::aaply(igraph::get.edgelist(sn1), 1, function(x) str_c(x[order(x)], collapse='--', paste='_'))
+      se2 <- plyr::aaply(igraph::get.edgelist(sn2), 1, function(x) str_c(x[order(x)], collapse='--', paste='_'))
       beta_OS <- bf(betapart(se1, se2))
       beta_ST <- beta_WN - beta_OS
    } else {

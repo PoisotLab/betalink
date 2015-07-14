@@ -23,7 +23,7 @@ network_betaplot <- function(n1, n2, na='#2ca02c', nb='#1f77b4', ns='grey', ...)
    }
    # EDGES
    make_readable_edgelist = function(x) {
-     X = get.edgelist(x)
+     X = igraph::get.edgelist(x)
      return(paste(X[,1], X[,2]))
    }
    edge_color <- rep(ns, length(E(M)))

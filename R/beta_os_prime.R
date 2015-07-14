@@ -10,7 +10,7 @@
 #' @export
 beta_os_prime <- function(N, ...){
 	M <- metaweb(N)
-	os_prime <- laply(N, function(x) betalink(x, M, ...)$OS)
+	os_prime <- plyr::laply(N, function(x) betalink(x, M, ...)$OS)
    names(os_prime) <- names(N)
 	return(os_prime)
 }

@@ -1,10 +1,10 @@
 #' @title Prepare networks
 #' @description
 #' Taking a list of networks as matrices, returns a list of igraph objects
-#' 
+#'
 #' @param w A list of network matrices
 #' @param directed whether the edges are directed or not
-#' 
+#'
 #' @export
 #' @examples
 #' data(clownfishes)
@@ -13,8 +13,8 @@
 prepare_networks <- function(w, directed = TRUE)
 {
    if(is.null(names(w))) warning("It is recommended to give names to your networks")
-   interactions_df <- llply(w, df_from_A)
-   networks <- llply(interactions_df, function(x) graph.data.frame(x, directed = directed))
+   interactions_df <- plyr::llply(w, df_from_A)
+   networks <- plyr::llply(interactions_df, function(x) igraph::graph.data.frame(x, directed = directed))
    class(networks) <- "econetwork"
    return(networks)
 }
@@ -36,4 +36,3 @@ df_from_A <- function(A)
    }
    return(A_df)
 }
-
