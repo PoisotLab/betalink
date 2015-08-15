@@ -1,3 +1,9 @@
+2.0.3
+=====
+
+- fixes a potential bug when only two networks are in a list
+- option complete for network_betadiversity (test all combinations)
+
 2.0.1
 =====
 - betaplot is now working

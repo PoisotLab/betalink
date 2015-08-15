@@ -4,10 +4,12 @@
 \alias{network_betadiversity}
 \title{Components of beta-diversity for a list of networks}
 \usage{
-network_betadiversity(N, ...)
+network_betadiversity(N, complete = FALSE, ...)
 }
 \arguments{
 \item{N}{a list of networks}
+
+\item{complete}{(boolean) whether all combinations of networks should be tested}
 
 \item{...}{additional arguments to be passed to \link{betalink}}
 }
