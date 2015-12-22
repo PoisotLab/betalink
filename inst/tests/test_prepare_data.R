@@ -10,5 +10,5 @@ test_that("It works with no names", {
    data(anemonefish)
    x <- unname(anemonefish)
    cf <- prepare_networks(x, TRUE)
-   expect_that(typeof(cf$Fukui), equals("list"))
+   expect_that(typeof(cf$network_1), equals("list"))
 })

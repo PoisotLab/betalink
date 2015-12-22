@@ -14,4 +14,4 @@ Description: Measures of beta-diversity in networks, and easy visualization of
     why two networks are different.
 License: BSD_2_clause + file LICENSE
 URL: http://poisotlab.io/software
-RoxygenNote: 5.0.0
+RoxygenNote: 5.0.1
