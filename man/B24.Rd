@@ -2,11 +2,14 @@
 % Please edit documentation in R/measures.r
 \name{B24}
 \alias{B24}
-\title{b_07}
+\title{B24}
 \usage{
 B24(pm)
 }
 \arguments{
 \item{pm}{a list with components a, b, and c}
+}
+\description{
+Measure beta-diversity
 }
 

@@ -9,4 +9,7 @@ B15(pm)
 \arguments{
 \item{pm}{a list with components a, b, and c}
 }
+\description{
+Measure beta-diversity
+}
 
