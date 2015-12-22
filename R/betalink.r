@@ -56,12 +56,10 @@ betalink <- function(n1,n2,bf=B01){
 betapart <- function(A,B) list(b=sum(!(A %in% B)), c=sum(!(B %in% A)), a=sum(B %in% A))
 
 
-#' @title Partition sets A and B
+#' @title Give names to networks
 #' @description
-#' given any two sets (arrays) A and B, return the size of components
-#' a, b, and c, used in functions to measure beta-diversity
-#' @param A any array
-#' @param B any array
+#' If the networks (in a list) have no names, give them names
+#' @param w A list (of networks, but who am I to judge?)
 #' @export
 name_networks <- function(w){
    if(is.null(names(w))){
