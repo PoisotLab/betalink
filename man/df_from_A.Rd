@@ -9,4 +9,7 @@ df_from_A(A)
 \arguments{
 \item{A}{an adjacency matrix}
 }
+\description{
+Transforms an Adjacency matrix into a data frame
+}
 

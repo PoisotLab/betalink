@@ -5,5 +5,8 @@
 \alias{anemonefish}
 \title{Anemone/fish interaction data}
 \format{16 adjacency matrices with species names}
+\description{
+From http://mangal.io/data/dataset/2/
+}
 \keyword{dataset}
 

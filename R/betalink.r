@@ -74,4 +74,5 @@ name_networks <- function(w){
 #' @keywords dataset
 #' @name anemonefish
 #' @format 16 adjacency matrices with species names
+#' @description From http://mangal.io/data/dataset/2/
 NULL

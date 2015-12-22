@@ -21,6 +21,7 @@ prepare_networks <- function(w, directed = TRUE)
 
 #' @title data.frame from adjancency matrix
 #' @param A an adjacency matrix
+#' @description Transforms an Adjacency matrix into a data frame
 df_from_A <- function(A)
 {
    A[A>0] <- 1
