@@ -12,7 +12,7 @@
 #' print(networks$Timur)
 prepare_networks <- function(w, directed = TRUE)
 {
-   if(is.null(names(w))) warning("It is recommended to give names to your networks")
+   w <- name_networks(w) # Check that the networks are named, name them otherwise
    interactions_df <- plyr::llply(w, df_from_A)
    networks <- plyr::llply(interactions_df, function(x) igraph::graph.data.frame(x, directed = directed))
    class(networks) <- "econetwork"
