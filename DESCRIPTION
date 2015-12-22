@@ -1,7 +1,7 @@
 Package: betalink
-Version: 2.1.1
-Date: 2015-07-13
-Title: Beta-Diversity Within a Metaweb of Species Interactions
+Version: 2.2.0
+Date: 2015-12-22
+Title: Beta-Diversity of Species Interactions
 Author: Timothee Poisot <tim@poisotlab.io>
 Maintainer: Timothee Poisot <tim@poisotlab.io>
 Depends:
