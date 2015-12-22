@@ -3,9 +3,6 @@ sudo: required
 
 cran: http://cran.rstudio.com
 
-r_binary_packages:
-   - testthat
-
 r_github_packages:
    - jimhester/covr
 
