@@ -5,6 +5,12 @@
 #' @param n a \code{list} of graphs
 #' @export
 metaweb <- function(n){
+   if(!is.list(n))
+   {
+      warning("n must be given as a list\nI have converted it for you\nCHECK THE RESULTS")
+      n <- list(n)
+   }
+   n <- name_networks(n)
    if(length(n)==1)
    {
       warning("There is a single network in the data you passed")
