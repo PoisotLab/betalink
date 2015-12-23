@@ -3,8 +3,9 @@ sudo: required
 
 cran: http://cran.rstudio.com
 
-r_github_packages:
-   - jimhester/covr
+r_packages:
+   - covr
+   - testthat
 
 after_success:
    - Rscript -e 'library(covr); coveralls()'

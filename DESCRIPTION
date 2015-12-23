@@ -5,13 +5,15 @@ Title: Beta-Diversity of Species Interactions
 Author: Timothee Poisot <tim@poisotlab.io>
 Maintainer: Timothee Poisot <tim@poisotlab.io>
 Depends:
-    R (>= 2.12.0)
+   R (>= 2.12.0)
 Imports:
-    plyr,
-    stringr,
-    igraph
-Description: Measures of beta-diversity in networks, and easy visualization of
-    why two networks are different.
+   plyr,
+   stringr,
+   igraph
+Suggests:
+   testthat,
+   covr
+Description: Measures of beta-diversity in networks, and easy visualization of why two networks are different.
 License: BSD_2_clause + file LICENSE
 URL: http://poisotlab.io/software
 RoxygenNote: 5.0.1
