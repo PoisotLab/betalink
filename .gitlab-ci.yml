@@ -1,5 +1,8 @@
 test:
     script:
+        - mkdir ~/R_libs
+        - export R_LIBS="/home/$USER/R_libs"
+        - Rscript -e "install.packages('devtools')"
         - make test
 
 mirror:
