@@ -1,0 +1,7 @@
+test:
+    script:
+        - make test
+
+mirror:
+    script:
+        - git push --mirror git@github.com:PoisotLab/betalink.git
