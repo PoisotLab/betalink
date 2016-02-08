@@ -7,7 +7,7 @@ test:
     script:
         - mkdir -p ~/R_libs
         - export R_LIBS="/home/$USER/R_libs"
-        - Rscript -e "install.packages(c('roxygen2', 'devtools', 'plyr', 'igraph', 'stringr'), repos='http://cran.rstudio.com')"
+        - Rscript -e "install.packages(c('testthat', 'covr', roxygen2', 'devtools', 'plyr', 'igraph', 'stringr'), repos='http://cran.rstudio.com')"
         - make test
 
 mirror:
