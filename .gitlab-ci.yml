@@ -1,4 +1,9 @@
+stages:
+    - test
+    - mirror
+
 test:
+    stage: test
     script:
         - mkdir -p ~/R_libs
         - export R_LIBS="/home/$USER/R_libs"
@@ -6,5 +11,6 @@ test:
         - make test
 
 mirror:
+    stage: mirror
     script:
         - git push --mirror git@github.com:PoisotLab/betalink.git
